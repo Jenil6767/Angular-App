@@ -1,0 +1,120 @@
+<p>list-user works!</p>
+<button nz-button nzType="primary">Primary Button</button>
+<button
+  nz-button
+  style="background-color: green; color: white"
+  (click)="addConsole()"
+>
+  Success
+</button>
+<input
+  type="text"
+  class="form-control form-control-sm me-2"
+  (input)="searchFunction($event)"
+/><nz-table #basicTable [nzData]="dataSet"  [nzBordered]="true" [nzSize]="'middle'">
+  <thead>
+    <tr>
+      <th
+        [nzShowSort]="true"
+        [nzSortFn]="true"
+        (nzSortOrderChange)="onSortChange($event, 'name')"
+      >
+        Name
+      </th>
+      <th>Username</th>
+      <th>email</th>
+      <th>website</th>
+      <th>
+        Action
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>{{ data.name }}</td>
+      <td>{{ data.username }}</td>
+      <td>{{ data.email }}</td>
+      <td>
+        {{ data.website }}
+   
+      </td>
+      <td>
+        <button nz-button nzType="link" nzSize="small" >
+          <i nz-icon nzType="edit" nzTheme="outline"></i> Edit
+        </button>
+        
+        <!-- Delete Button -->
+        <button nz-button nzType="link" nzSize="small" >
+          <i nz-icon nzType="delete" nzTheme="outline" style="color: red;"></i> Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+
+<button nz-button nzType="primary" (click)="openDrawer()">Open Drawer</button>
+
+<nz-drawer
+  [nzVisible]="isDrawerVisible"
+  [nzTitle]="'User Form'"
+  [nzWidth]="'400px'"
+  (nzOnClose)="closeDrawer()"
+>
+  <ng-container *nzDrawerContent>
+    <form [formGroup]="userForm">
+      <label>Name:</label>
+      <input nz-input formControlName="name" placeholder="Enter name" />
+      <div
+        *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched"
+        class="error"
+      >
+        Name is required
+      </div>
+
+      <label>Username:</label>
+      <input nz-input formControlName="username" placeholder="Enter email" />
+      <div
+        *ngIf="
+          userForm.get('username')?.invalid && userForm.get('username')?.touched
+        "
+        class="error"
+      >
+        username email is required
+      </div>
+
+      <label>email:</label>
+      <input
+        nz-input
+        formControlName="email"
+        placeholder="Enter phone number"
+      />
+      <div
+        *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched"
+        class="error"
+      >
+        email is required
+      </div>
+
+      <label>website:</label>
+      <textarea
+        nz-input
+        formControlName="website"
+        placeholder="Enter address"
+      ></textarea>
+
+      <div class="buttons">
+        <button
+          nz-button
+          nzType="primary"
+          (click)="submitForm()"
+          [disabled]="userForm.invalid"
+        >
+          Submit
+        </button>
+        <button nz-button nzType="default" (click)="closeDrawer()">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </ng-container>
+</nz-drawer>

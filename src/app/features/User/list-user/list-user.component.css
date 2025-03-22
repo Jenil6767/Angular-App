@@ -1,0 +1,63 @@
+::ng-deep .ant-drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* // Ensure the close (X) icon is aligned to the right */
+::ng-deep .ant-drawer-close {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+}
+
+/* // Form container styling */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+}
+
+/* // Label styling */
+label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  display: block;
+}
+
+/* // Input fields styling */
+input[nz-input],
+textarea[nz-input] {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #d9d9d9;
+  transition: border-color 0.3s;
+}
+
+
+input[nz-input]:focus,
+textarea[nz-input]:focus {
+  border-color: #1890ff;
+  box-shadow: 0 0 3px rgba(24, 144, 255, 0.3);
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: -5px;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  justify-content: flex-end;
+}
+
+@media (max-width: 480px) {
+  ::ng-deep .ant-drawer-header {
+    padding: 12px;
+  }
+}
